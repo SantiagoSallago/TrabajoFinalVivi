@@ -1,4 +1,4 @@
-interface Principal{
+export interface Principal{
     nombre:string;
     id:number;
     
