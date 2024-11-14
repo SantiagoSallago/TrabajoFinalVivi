@@ -2,7 +2,7 @@ export interface Principal{
     nombre:string;
     id:number;
     
-    Alta():String
-    Baja():String
+    Alta(boolean:boolean):void
+    Baja(boolean:boolean):void
     Modificar():String
 }
