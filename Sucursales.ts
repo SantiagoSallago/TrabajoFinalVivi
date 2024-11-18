@@ -15,18 +15,20 @@ export class veterinaria implements Principal{
 
     Alta():void{
        this.habilitado=true;
-       console.log(`Se ha activado ${this.nombre}`);
-       
-        
+       console.log(`Se ha activado ${this.nombre}`);     
     }
     Baja(habilitado:boolean):boolean{
         this.habilitado=habilitado;
         console.log(`${this.nombre} esta ${this.habilitado?`habilitada`:`deshabilitada`}`);
         return this.habilitado;
     }
-   
-    
-    Modificar():String{
-        return "Modificar";
+    Modificar(nombre?:string,direccion?:string,id?:number,habilitado?:boolean):void{
+        if(nombre) this.nombre=nombre;
+        if(direccion) this.direccion=direccion;
+        if(id) this.id=id;
+        if(habilitado) this.habilitado=habilitado;
+
+        console.log(`Se ha modificado la sucursal ${this.nombre} con direccion ${this.direccion} y id ${this.id}`);
+
     }
 }
