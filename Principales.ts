@@ -4,5 +4,5 @@ export interface Principal{
     
     Alta(boolean:boolean):void
     Baja(boolean:boolean):void
-    Modificar():String
+    Modificar():void
 }

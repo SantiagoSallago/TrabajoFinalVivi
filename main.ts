@@ -8,3 +8,6 @@ console.log(veterinaria2);
 
 console.log(veterinaria1.Baja(false));
 console.log(veterinaria2.Alta());
+
+
+veterinaria1.Modificar("La Matanza2.0","Calle 3",idAleatorio(),false);
