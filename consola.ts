@@ -11,9 +11,11 @@ console.log(`
         5. Salir
     `);
 
+
+
 let usuario = readlineSync.question('Numero: ');
 
-switch (usuario) {
+switch (usuario){
     case '1':
         let veterinaria1 = new veterinaria("La Matanza","Calle 1",idAleatorio(),true);
         console.log(`${veterinaria1.nombre}, ${veterinaria1.direccion} y su id ${veterinaria1.id} `);
@@ -134,7 +136,7 @@ switch (usuario) {
         }
         break;
     case '2':
-
+    
         console.log("Clientes");
         break;
     case '3':
