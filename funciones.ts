@@ -1,4 +1,3 @@
-
 import {Dueño} from "./Dueños"
 
 export function idAleatorio(): number {
@@ -12,7 +11,8 @@ export function obtenerDueño(number: number, array: Dueño[]){
 
     //--- Si lo encuentro
     if (pepe)
-        console.log('El dueño de la fucking mascota es: ' + pepe.nombre)
+        console.log('El dueño de la mascota es: ' + pepe.nombre)
     else
-        console.log('No se encontro el fucking dueño')
+        console.log('No se encontro el dueño de la mascota')
+
 }

@@ -1,153 +1,190 @@
-import {veterinaria} from "./Sucursales";
-import {idAleatorio} from "./funciones";
+import { veterinaria} from "./Sucursales";
+import { idAleatorio, obtenerDueño} from "./funciones";
+import { Dueño}  from "./Dueños";
+import { Mascota } from "./Mascota";
+import { proveedor } from "./proveedores";
 import readlineSync from 'readline-sync';
-console.log(`
-        Bienvenido a la consola de la veterinaria
-        Escriba el numero al que desea acceder
+
+
+let accion!: string ;
+let respuesta:string = '0';
+
+let veterinaria1 = new veterinaria("La Matanza","Calle 1",idAleatorio(),true);
+let veterinaria2 = new veterinaria("La Matanza uwu","Calle 2",idAleatorio(),true);
+let veterinarias: veterinaria[] = [veterinaria1, veterinaria2];
+
+let dueño1 = new Dueño("Pepe",idAleatorio(),true);
+let dueño2 = new Dueño("Menem",idAleatorio(),true);
+let clientes: Dueño[] = [dueño1, dueño2];
+
+let Mascota1 = new Mascota(idAleatorio(), "JuanCarlo", "Gato", dueño1.getIdDueño());
+let Mascota2 = new Mascota(idAleatorio(), "Jose", "Ave Fenix", dueño2.getIdDueño());
+let pacientes: Mascota[] = [Mascota1, Mascota2];
+
+let proveedor1 = new proveedor("Pepe",idAleatorio(),123456789,true);
+let proveedor2 = new proveedor("Nemo",idAleatorio(),24124124,true); 
+let proveedores: proveedor[] = [proveedor1, proveedor2];
+
+
+
+while (respuesta !== '5'){
+    // LE PREGUNTAMOS AL USUARIO QUE DESEA HACER
+    console.log(`
+        A que desea acceder
         1. Sucursales
         2. Clientes
         3. Pacientes
         4. Proveedores
         5. Salir
     `);
-
-
-
-let usuario = readlineSync.question('Numero: ');
-
-switch (usuario){
-    case '1':
-        let veterinaria1 = new veterinaria("La Matanza","Calle 1",idAleatorio(),true);
-        console.log(`${veterinaria1.nombre}, ${veterinaria1.direccion} y su id ${veterinaria1.id} `);
-        
-        let veterinaria2 = new veterinaria("La Matanza","Calle 2",idAleatorio(),true);
-        console.log(`${veterinaria2.nombre}, ${veterinaria2.direccion} y su id ${veterinaria2.id} `);
-        
-        let veterinaria3 = new veterinaria("La Matanza","Calle 3",idAleatorio(),true);
-        console.log(`${veterinaria3.nombre}, ${veterinaria3.direccion} y su id ${veterinaria3.id} `);
-        
-        console.log(`
-        Que desea hacer?
-        1. Modificar
-        2. Dar de Bajar
-        3. Dar de Alta
-        4. Salir
-            `);
-        
-        usuario = readlineSync.question('Numero: ');
-        if (usuario) {
-            switch (usuario) {
-                case '1':
-                    console.log("Que sucursal desea modificar?");
-                    console.log(`
-                        1.${veterinaria1.nombre}
-                        2.${veterinaria2.nombre}
-                        3.${veterinaria3.nombre}
-                        4.Salir
-                    `);
-                    usuario = readlineSync.question('Numero: ');
-                    switch (usuario) {
-                        case '1':
-                            console.log(' Ingrese el nuevo nombre de la sucursal');
-                            let nombre = readlineSync.question('Nuevo nombre: ');
-                            console.log(' Ingrese la nueva direccion de la sucursal');
-                            let direccion = readlineSync.question('Nueva direccion: ');
-                            veterinaria1.Modificar(nombre,direccion,idAleatorio(),true);
-                            console.log(veterinaria1);
-                            
-                            break;
-                        case '2':
-                            console.log(' Ingrese el nuevo nombre de la sucursal');
-                            let nombre2 = readlineSync.question('Nuevo nombre: ');
-                            console.log(' Ingrese la nueva direccion de la sucursal');
-                            let direccion2 = readlineSync.question('Nueva direccion: ');
-                            veterinaria2.Modificar(nombre2,direccion2,idAleatorio(),true);
-                            console.log(veterinaria2);
-                            
-                            break;
-                        case '3':
-                            console.log(' Ingrese el nuevo nombre de la sucursal');
-                            let nombre3 = readlineSync.question('Nuevo nombre: ');
-                            console.log(' Ingrese la nueva direccion de la sucursal');
-                            let direccion3 = readlineSync.question('Nueva direccion: ');
-                            veterinaria3.Modificar(nombre3,direccion3,idAleatorio(),true);
-                            console.log(veterinaria3);
-                            
-                            break;
-                        case '4':
-                            console.log("Saliendo...");
-                            break;
-                    }
-                    break;
-                case '2':
-                    console.log(`
-                        Que sucursal desea dar de Baja?
-                        1.${veterinaria1.nombre}
-                        2.${veterinaria2.nombre}
-                        3.${veterinaria3.nombre}
-                        4.Salir
-                        `);
-                        usuario = readlineSync.question('Numero: ');
-                        switch (usuario) {
-                            case '1':
-                                
-                                veterinaria1.Baja();
-                                break;
-                            case '2':
-                                veterinaria2.Baja();
-
-                                break;
-                            case '3':
-                                veterinaria3.Baja();
-                                break;
-                            case '4':
-                                console.log("Saliendo...");
-                                break;
-                        }
-                        break;
-                case '3':
-                    console.log(`
-                    Que sucursal desea dar de Alta?
-                    1.${veterinaria1.nombre}
-                    2.${veterinaria2.nombre}
-                    3.${veterinaria3.nombre}
-                    4.Salir
-                        `);
-                        usuario = readlineSync.question('Numero: ');
-                        switch (usuario) {
-                            case '1':
-                                veterinaria1.Alta();
-                                break;
-                            case '2':
-                                veterinaria2.Alta();
-                                break;
-                            case '3':
-                                veterinaria3.Alta();
-                                break;
-                            case '4':
-                                console.log("Saliendo...");
-                                break;
-                        }
-                    break;
-                case '4':
-                    console.log("Saliendo");
-                    break;
-            }
-        }
-        break;
-    case '2':
+    respuesta = readlineSync.question('Elija una opcion: ');
     
-        console.log("Clientes");
-        break;
-    case '3':
-        console.log("Pacientes");
-        break;
-    case '4':
-        console.log("Proveedores");
-        break;
-    case '5':
-        console.log("Saliendo");
-        break;
-    default:
-        console.log("Opcion incorrecta");
+    if (respuesta !== '5') {
+        console.log(`
+            Que desea hacer?
+            1. Modificar
+            2. Dar de Bajar 
+            3. Dar de Alta
+            4. Mostrar listado
+        `);
+        accion = readlineSync.question('Elija una opcion: ');    
+    }
+    
+
+        switch (respuesta) {
+            case '1': //-------- Manejo del tipo de veterinarias
+                      menuABM(veterinarias, accion)  
+                      break;
+            case '2': //-------- Manejo del tipo de clientes, en el menu generico
+                      menuABM(clientes, accion)
+                      break;
+            case '3': //-------- Manejo del tipo de pacientes, en el menu generico
+                      menuABM(pacientes, accion)
+                      break;
+            case '4': //-------- Manejo del tipo de proveedores, en el menu generico
+                      menuABM(proveedores, accion)
+                      break;
+            default : console.log('Gracias papu por usar el sistema')
+                      break;
+
+    }
+  
 }
+
+   
+function menuABM(array: veterinaria[] | Dueño[] | Mascota[] | proveedor[] , accion: string){
+    let eleccion: number;
+    let type = array[0].constructor.name;
+    switch(accion){
+        //-------------------------- Editar
+        case '1':   //--------------- Veterinaria
+                    if (type == "veterinaria"){ //<--------- nombre de la clase
+                        console.log("Elija el id de la veterinaria a modificar")
+                        veterinarias.forEach(e => { //<--------- Array a recorrer
+                            console.log('ID: ' +e.id + ', veterinaria:' + e.nombre)
+                        })
+                        eleccion = parseInt(readlineSync.question('Elija una opcion: '));
+                    
+                        let nombre = readlineSync.question('Ingrese el nuevo nombre: ');
+                        let direccion = readlineSync.question('Ingrese la nueva direccion: ');
+                    
+                        veterinarias.map(e =>{ //<--------- Recorro array
+                            if (e.id === eleccion){ //<--------- Si lo encuentro
+                                e.Modificar(nombre, direccion);  //<--------- Modifico
+                            }
+                        })
+                    }
+                    //--------------- Dueños
+                    if (type == "Dueño"){
+                        console.log("Elija el id del Dueño a modificar")
+                        clientes.forEach(e => {
+                            console.log('ID: ' +e.id + ', Sucursal:' + e.nombre)
+                        })
+                        eleccion = parseInt(readlineSync.question('Elija una opcion: '));
+                    
+                        let nombre = readlineSync.question('Ingrese el nuevo nombre: ');
+                    
+                        clientes.map(e =>{
+                            if (e.id === eleccion){
+                                e.Modificar(nombre);
+                            }
+                        })
+                    }  
+                    
+                    //--------------- Mascotas
+                    if (type == "Mascota"){
+                        console.log("Elija el id del la Mascota a modificar")
+                        pacientes.forEach(e => {
+                            console.log('ID: ' +e.id + ', Mascota:' + e.nombre)
+                        })
+                        eleccion = parseInt(readlineSync.question('Elija una opcion: '));
+                    
+                        let nombre = readlineSync.question('Ingrese el nuevo nombre: ');
+                        
+                        pacientes.map(e =>{
+                            if (e.id === eleccion){
+                                e.Modificar(nombre);
+                            }
+                        })
+                    }  
+                    
+                    //--------------- Proveedores
+                    if (type == "Proveedor"){
+                        console.log("Elija el id del Proveedor a modificar")
+                        proveedores.forEach(e => {
+                            console.log('ID: ' +e.id + ', Proveedor:' + e.nombre)
+                        })
+                        eleccion = parseInt(readlineSync.question('Elija una opcion: '));
+                    
+                        let nombre = readlineSync.question('Ingrese el nuevo nombre: ');
+                    
+                        proveedores.map(e =>{
+                            if (e.id === eleccion){
+                                e.Modificar(nombre);
+                            }
+                        })
+                    }
+   
+                break;
+        //------------------- Bajas
+        case '2': 
+                  console.log("Elija el id del/las "+ type +" que desea dar de baja")
+                  array.forEach(e => {
+                      console.log('ID: ' +e.id + ',' + type + ':' + e.nombre)
+                  })
+                  eleccion = parseInt(readlineSync.question('Elija una opcion: '));
+                  
+                  array.map(e => {
+                    // si el elemento coincide con el "ID" buscado
+                    if (e.id == eleccion){
+                        e.Baja();
+                    }
+                  })
+                break;    
+        //------------------- Altas
+        case '3': 
+                  console.log("Elija el id del/las "+ type +" que desea dar de baja")
+                  array.forEach(e => {
+                      console.log('ID: ' +e.id + ',' + type + ':' + e.nombre)
+                  })
+                  eleccion = parseInt(readlineSync.question('Elija una opcion: '));
+                  
+                  array.map(e => {
+                    // si el elemento coincide con el "ID" buscado
+                    if (e.id == eleccion){
+                        e.Alta();
+                    }
+                  })
+                break;  
+
+       case '4':  
+                array.forEach(e => {
+                    console.log('ID: ' +e.id + ',' + type + ':' + e.nombre)  
+                })
+                break;
+
+    }
+    
+}
+
+    

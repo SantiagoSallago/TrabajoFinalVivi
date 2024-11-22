@@ -26,13 +26,11 @@ Baja(){
 }
 
 // Especie y id no cambian, habilitado es para la baja y alta
-Modificar(nombre:string, idDueño:number){
+Modificar(nombre:string, idDueño?:number): void{
      if(nombre) // si existe el parametro nombre se modifica el nombre
         this.nombre=nombre; 
      if(idDueño)  // si existe el parametro nombre se modifica el id del dueño (cambia de dueño)
         this.idDueño = idDueño;
 }
-
-
 }
 
