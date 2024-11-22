@@ -3,7 +3,7 @@ export interface Principal{
     id:number;
     
     
-    Alta(boolean:boolean):void
-    Baja(boolean:boolean):void
-    // Modificar():void
+    Alta():void
+    Baja():void
+   
 }

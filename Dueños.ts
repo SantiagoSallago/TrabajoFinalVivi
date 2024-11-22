@@ -3,7 +3,7 @@ import {Principal} from "./Principales";
 
 
 export class Dueño implements Principal {
-    nombre:string;
+    nombre: string;
     id:number;
     habilitado:boolean=true;
 
@@ -24,14 +24,13 @@ export class Dueño implements Principal {
     }
 
 Alta():void{
-    this.habilitado=true;
+    this.habilitado = true;
     console.log(`Se ha activado ${this.nombre}`);     
 }
 
-Baja(habilitado:boolean):boolean{
-    this.habilitado=habilitado;
-    console.log(`${this.nombre} esta ${this.habilitado?`habilitada`:`deshabilitada`}`);
-    return this.habilitado;
+Baja():void{
+    this.habilitado = false;
+    console.log(`Se ha desactivado ${this.nombre}`);
 }
 
  Modificar(nombre:string):void{
@@ -39,7 +38,6 @@ Baja(habilitado:boolean):boolean{
 
      console.log(`Se ha modificado el paciente ${this.nombre}  y su id ${this.id}`);
  }
-
 }
 
 
