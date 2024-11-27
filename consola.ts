@@ -3,7 +3,7 @@ import { idAleatorio} from "./funciones";
 import { Dueño}  from "./Dueños";
 import { Mascota } from "./Mascota";
 import { proveedor } from "./proveedores";
-import readlineSync from 'readline-sync';
+import * as readlineSync from 'readline-sync';
 
 
 let accion!: string ;
@@ -13,8 +13,8 @@ let veterinaria1 = new veterinaria("La Matanza","Calle 1",idAleatorio(),true);
 let veterinaria2 = new veterinaria("La Matanza uwu","Calle 2",idAleatorio(),true);
 let veterinarias: veterinaria[] = [veterinaria1, veterinaria2];
 
-let dueño1 = new Dueño("Pepe",idAleatorio(),true,false,1);
-let dueño2 = new Dueño("Menem",idAleatorio(),true,false,4);
+let dueño1 = new Dueño("Pepe",idAleatorio());
+let dueño2 = new Dueño("Menem",idAleatorio());
 
 let clientes: Dueño[] = [dueño1, dueño2];
 
@@ -181,7 +181,9 @@ function menuABM(array: veterinaria[] | Dueño[] | Mascota[] | proveedor[] , acc
 
        case '4':  
                 array.forEach(e => {
-                    console.log('ID: ' +e.id + ',' + type + ':' + e.nombre )
+                    let habilitado = e.habilitado ? "Si" : "No";
+
+                    console.log('ID: ' +e.id + ',' + type + ': ' + e.nombre + ', Habilitado: ' + habilitado)
 
                 })
                 break;

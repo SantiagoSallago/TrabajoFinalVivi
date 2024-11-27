@@ -5,16 +5,16 @@ import {Principal} from "./Principales";
 export class Dueño implements Principal {
     nombre: string;
     id:number;
-    habilitado:boolean=true;
+    habilitado:boolean;
     esVip:boolean;
     cantidadVisitas:number;
 
-    constructor(nombre:string,id:number, habilitado:boolean,esVip:boolean,cantidadVisitas:number=0){
+    constructor(nombre:string,id:number){
         this.nombre=nombre
         this.id=id;
-        this.habilitado=habilitado;
-        this.esVip=esVip;
-        this.cantidadVisitas=cantidadVisitas;
+        this.habilitado = true;
+        this.esVip= false ;
+        this.cantidadVisitas = 0;
     }
 
 
