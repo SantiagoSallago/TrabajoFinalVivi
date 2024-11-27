@@ -5,14 +5,13 @@ export function idAleatorio(): number {
 }
 
 // -------- Numero de id del dueño de la mascota, array de los posibles dueños
-export function obtenerDueño(number: number, array: Dueño[]){
+export function obtenerDueño(mascotaDueñoId: number, Dueños: Dueño[]): string{
     
-    let pepe = array.find(x => x.getIdDueño() == number); // <-- busco el id dentro del array
+    let dueño = Dueños.find(dueño => dueño.getIdDueño() == mascotaDueñoId); // <-- busco el id dentro del array
 
     //--- Si lo encuentro
-    if (pepe)
-        console.log('El dueño de la mascota es: ' + pepe.nombre)
+    if (dueño)
+        return dueño.nombre
     else
-        console.log('No se encontro el dueño de la mascota')
-
+        return "No existe"
 }

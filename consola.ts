@@ -1,5 +1,5 @@
 import { veterinaria} from "./Sucursales";
-import { idAleatorio} from "./funciones";
+import { idAleatorio, obtenerDueño} from "./funciones";
 import { Dueño}  from "./Dueños";
 import { Mascota } from "./Mascota";
 import { proveedor } from "./proveedores";
@@ -182,9 +182,14 @@ function menuABM(array: veterinaria[] | Dueño[] | Mascota[] | proveedor[] , acc
        case '4':  
                 array.forEach(e => {
                     let habilitado = e.habilitado ? "Si" : "No";
+                    if ('idDueño' in e) { // si encuentra el atributo idDueño
+                        let nombreDueño = obtenerDueño(e.idDueño, clientes);
+                        console.log('ID: ' +e.id + ',' + type + ': ' + e.nombre + ', Habilitado: ' + habilitado, ', El dueño es: ', nombreDueño)
+                    } else{
+                        console.log('ID: ' +e.id + ',' + type + ': ' + e.nombre + ', Habilitado: ' + habilitado)
+                    }
 
-                    console.log('ID: ' +e.id + ',' + type + ': ' + e.nombre + ', Habilitado: ' + habilitado)
-
+                    
                 })
                 break;
 
