@@ -1,5 +1,5 @@
 import { veterinaria} from "./Sucursales";
-import { idAleatorio, obtenerDueño} from "./funciones";
+import { idAleatorio} from "./funciones";
 import { Dueño}  from "./Dueños";
 import { Mascota } from "./Mascota";
 import { proveedor } from "./proveedores";
@@ -13,8 +13,9 @@ let veterinaria1 = new veterinaria("La Matanza","Calle 1",idAleatorio(),true);
 let veterinaria2 = new veterinaria("La Matanza uwu","Calle 2",idAleatorio(),true);
 let veterinarias: veterinaria[] = [veterinaria1, veterinaria2];
 
-let dueño1 = new Dueño("Pepe",idAleatorio(),true);
-let dueño2 = new Dueño("Menem",idAleatorio(),true);
+let dueño1 = new Dueño("Pepe",idAleatorio(),true,false,1);
+let dueño2 = new Dueño("Menem",idAleatorio(),true,false,4);
+
 let clientes: Dueño[] = [dueño1, dueño2];
 
 let Mascota1 = new Mascota(idAleatorio(), "JuanCarlo", "Gato", dueño1.getIdDueño());
@@ -64,7 +65,7 @@ while (respuesta !== '5'){
             case '4': //-------- Manejo del tipo de proveedores, en el menu generico
                       menuABM(proveedores, accion)
                       break;
-            default : console.log('Gracias papu por usar el sistema')
+            default : console.log('Gracias por usar el sistema')
                       break;
 
     }
@@ -98,15 +99,16 @@ function menuABM(array: veterinaria[] | Dueño[] | Mascota[] | proveedor[] , acc
                     if (type == "Dueño"){
                         console.log("Elija el id del Dueño a modificar")
                         clientes.forEach(e => {
-                            console.log('ID: ' +e.id + ', Sucursal:' + e.nombre)
+                            console.log('ID: ' +e.id + ', Cliente:' + e.nombre + ', Vip:' + e.getVip())
                         })
                         eleccion = parseInt(readlineSync.question('Elija una opcion: '));
                     
                         let nombre = readlineSync.question('Ingrese el nuevo nombre: ');
-                    
+                        let cantidadVisitas = parseInt(readlineSync.question('Ingrese la nueva cantidad de visitas: '));
                         clientes.map(e =>{
                             if (e.id === eleccion){
                                 e.Modificar(nombre);
+                                e.ModificarVisitas(cantidadVisitas)
                             }
                         })
                     }  
@@ -179,12 +181,11 @@ function menuABM(array: veterinaria[] | Dueño[] | Mascota[] | proveedor[] , acc
 
        case '4':  
                 array.forEach(e => {
-                    console.log('ID: ' +e.id + ',' + type + ':' + e.nombre)  
+                    console.log('ID: ' +e.id + ',' + type + ':' + e.nombre )
+
                 })
                 break;
 
     }
     
 }
-
-    

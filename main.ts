@@ -14,12 +14,16 @@ let arrayDueños:Dueño [] = []; // <--- Los id de los dueños, para asignarselo
 
 // console.log(veterinaria1.Baja());
 // console.log(veterinaria2.Alta());
+let duenio = new Dueño("Pepe",idAleatorio(),true,false,1);
+let duenio2 = new Dueño("Menem",idAleatorio(),true,false,4);
 
 
 // veterinaria1.Modificar("La Matanza2.0","Calle 3",idAleatorio(),false);
 
-let duenio = new Dueño("Pepe",idAleatorio(),true);
-let duenio2 = new Dueño("Menem",idAleatorio(),true);
+
+duenio.getVip();
+duenio2.getVip();
+
 
 arrayDueños.push(duenio)
 arrayDueños.push(duenio2)
@@ -31,7 +35,6 @@ console.log()
 // ---- Mascota del primer dueño ---- 
 let mascota = new Mascota (idAleatorio(), "JuanCarlo", "Gato", duenio.getIdDueño()); //<--- Joia
 console.log(mascota)
-
 
 // ---- Cambio la mascota de dueño ---- 
 mascota.Modificar("",duenio2.getIdDueño());
